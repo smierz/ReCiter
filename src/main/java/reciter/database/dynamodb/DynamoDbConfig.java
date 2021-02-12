@@ -134,9 +134,10 @@ public class DynamoDbConfig {
 					"-dbPath", 	this.dynamoDbPath,"-port", this.dynamoDbLocalPort
 				});
 				server.start();*/
-				
+			
+				// using the docker-compose network to locate service dynamodb
 				amazonDynamoDB = AmazonDynamoDBClientBuilder.standard().withEndpointConfiguration(
-	        			new AwsClientBuilder.EndpointConfiguration("http://docker.for.mac.host.internal:" + this.dynamoDbLocalPort, dynamodbLocalRegion))
+	        			new AwsClientBuilder.EndpointConfiguration("http://dynamo:" + this.dynamoDbLocalPort, dynamodbLocalRegion))
 	    				 .withCredentials(new AWSStaticCredentialsProvider(new AWSCredentials() {
 							
 							@Override
